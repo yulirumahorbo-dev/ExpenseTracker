@@ -38,7 +38,7 @@ const DUMMY_EXPENSES = [
   {
     id: "e6",
     description: "A pair of trousers",
-    amount: 89.99,
+    amount: 89.9,
     date: new Date("2022-01-05"),
   },
   {
