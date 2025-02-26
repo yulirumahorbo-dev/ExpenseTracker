@@ -4,68 +4,56 @@ const DUMMY_EXPENSES = [
   {
     id: "e1",
     description: "A pair of shoes",
-    amount: 59.99,
-    date: new Date("2021-12-10"),
+    amount: 354000,
+    date: new Date("2025-2-25"),
   },
   {
     id: "e2",
     description: "A pair of trousers",
-    amount: 89.99,
-    date: new Date("2022-01-05"),
+    amount: 129000,
+    date: new Date("2025-2-24"),
   },
   {
     id: "e3",
     description: "Some bananas",
-    amount: 5.99,
-    date: new Date("2021-12-01"),
+    amount: 20000,
+    date: new Date("2025-2-23"),
   },
   {
     id: "e4",
     description: "A book",
-    amount: 14.99,
-    date: new Date("2022-02-18"),
+    amount: 150000,
+    date: new Date("2025-2-22"),
   },
   {
     id: "e5",
     description: "Another book",
-    amount: 16.39,
-    date: new Date("2022-02-18"),
+    amount: 350000,
+    date: new Date("2025-2-21"),
   },
   {
     id: "e6",
     description: "A pair of trousers",
-    amount: 89.9,
-    date: new Date("2022-01-05"),
+    amount: 275000,
+    date: new Date("2025-2-20"),
   },
   {
     id: "e7",
     description: "Some bananas",
-    amount: 5.99,
-    date: new Date("2021-12-01"),
+    amount: 23000,
+    date: new Date("2025-2-19"),
   },
   {
     id: "e8",
     description: "A book",
-    amount: 14.99,
-    date: new Date("2022-02-18"),
+    amount: 113400,
+    date: new Date("2025-2-19"),
   },
   {
     id: "e9",
     description: "Another book",
-    amount: 16.39,
-    date: new Date("2022-02-18"),
-  },
-  {
-    id: "e10",
-    description: "A book",
-    amount: 14.99,
-    date: new Date("2022-02-18"),
-  },
-  {
-    id: "e11",
-    description: "Another book",
-    amount: 16.39,
-    date: new Date("2022-02-18"),
+    amount: 87000,
+    date: new Date("2025-2-4"),
   },
 ];
 
@@ -91,7 +79,7 @@ function expensesReducer(state, action) {
       updatedExpenses[updatableExpenseIndex] = updatedItem;
       return updatedExpenses;
     case "DELETE":
-      return state.filter(({ expense }) => expense.id !== action.payload);
+      return state.filter((expense) => expense.id !== action.payload);
     default:
       return state;
   }
@@ -112,7 +100,17 @@ function ExpensesContextProvider({ children }) {
     dispatch({ type: "UPDATE", payload: { id: id, data: expenseData } });
   }
 
-  return <ExpensesContext.Provider>{children}</ExpensesContext.Provider>;
+  const value = {
+    expenses: expensesState,
+    addExpense: addExpense,
+    deleteExpense: deleteExpense,
+    updateExpense: updateExpense,
+  };
+  return (
+    <ExpensesContext.Provider value={value}>
+      {children}
+    </ExpensesContext.Provider>
+  );
 }
 
 export default ExpensesContextProvider;
